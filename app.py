@@ -75,5 +75,9 @@ def index():
     return render_template('index.html')
 
 if __name__ == '__main__':
+    from gevent import pywsgi
+    from geventwebsocket.handler import WebSocketHandler
+    pywsgi.WSGIServer(('', 3000), app, handler_class=WebSocketHandler).serve_forever()
     app.run(debug=True)
+
 
